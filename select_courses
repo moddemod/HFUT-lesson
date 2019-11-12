@@ -1,0 +1,118 @@
+#!/usr/bin/env python
+# -*- coding:utf-8 -*-
+# author:moddemod
+# datetime:2019/8/30 22:28
+# software: PyCharm
+
+import requests
+
+
+class Login(object):
+    """登录"""
+    def __init__(self, username, password):
+        self.username = username
+        self.password = password
+        self.baseUrl = "http://jxglstu.hfut.edu.cn/"
+        self.cookies = ""
+        self.user_message_list = []
+
+    def request_init(self, url):
+        """
+        获取cookie
+        :param url:
+        :return:
+        """
+        response = requests.get(url=url)
+        # print(response.cookies)
+        self.cookies = requests.utils.dict_from_cookiejar(response.cookies)
+        # print(self.cookies)
+        return response.text
+
+    def get_login_salt(self, suffix_url="eams5-student/login-salt"):
+        """
+        获取salt
+        :param suffix_url:
+        :return:
+        """
+        url = self.baseUrl + suffix_url
+        return self.request_init(url)
+
+    def get_encrypt_password(self):
+        """
+        密码加密处理
+        :return:
+        """
+        login_salt = self.get_login_salt() + "-" + self.password
+        import hashlib
+        hash1 = hashlib.sha1()
+        hash1.update(login_salt.encode("utf-8"))
+        return hash1.hexdigest()
+
+    def login(self, suffix_url="eams5-student/login"):
+        """
+        登录逻辑
+        :param suffix_url:
+        :return:
+        """
+        url = self.baseUrl + suffix_url
+        username = self.username
+        password = self.get_encrypt_password()
+        request_payload_dict = {
+            "captcha": "",
+            "password": password,
+            "username": username
+        }
+        header = {
+            'Content-Type': 'application/json'
+        }
+        import json
+        request_payload_json = json.dumps(request_payload_dict)
+        response = requests.post(url=url, data=request_payload_json, headers=header, cookies=self.cookies)
+        if response.status_code == 200 and json.loads(response.text)["result"] is True:
+            self.get_real_message()
+            return 1
+        else:
+            return 0
+    @property
+    def get_info_id(self, suffix_url="eams5-student/for-std/student-info"):
+        url = self.baseUrl + suffix_url
+        response = requests.get(url=url, cookies=self.cookies)
+        import re
+        pattern = re.compile(r"\d+")
+        number_id = re.findall(pattern, response.url).pop()
+        return number_id
+
+    @property
+    def get_cookie(self):
+        return self.cookies
+
+    def get_real_message(self, suffix_url="eams5-student/for-std/student-info/info/"):
+        url = self.baseUrl + suffix_url + self.get_info_id
+        response = requests.get(url=url, cookies=self.cookies)
+        import re
+        pattern = re.compile(r"<span>(.*)</span>")
+        self.user_message_list = re.findall(pattern, response.text)
+        # print(type(self.user_message_list))
+        
+    @property
+    def get_real_username(self):
+        """
+        姓名
+        :return: 
+        """
+        return self.user_message_list[1]
+    
+    @property
+    def get_real_number_id(self):
+        """
+        身份证号
+        :return: 
+        """
+        return self.user_message_list[5]
+    
+
+if __name__ == '__main__':
+    zhao = Login(2018213430, "zy123456")
+    print(zhao.login())
+    # zhao.get_real_message()
+    print(zhao.get_real_username)
