@@ -56,7 +56,7 @@ class Login(object):
         }
         header = {
             'Content-Type': 'application/json',
-            'User-Agent': '',
+            'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.97 Safari/537.36',
         }
         import json
         request_payload_json = json.dumps(request_payload_dict)
@@ -72,7 +72,7 @@ class Login(object):
     @property
     def get_info_id(self, suffix_url="eams5-student/for-std/student-info"):
         url = self.baseUrl + suffix_url
-        response = self.requests.get(url=url, cookies=self.cookies)
+        response = self.requests.get(url=url)
         import re
         pattern = re.compile(r"\d+")
         number_id = re.findall(pattern, response.url).pop()
@@ -84,7 +84,7 @@ class Login(object):
 
     def get_real_message(self, suffix_url="eams5-student/for-std/student-info/info/"):
         url = self.baseUrl + suffix_url + self.get_info_id
-        response = self.requests.get(url=url, cookies=self.cookies)
+        response = self.requests.get(url=url)
         import re
         pattern = re.compile(r"<span>(.*)</span>")
         self.user_message_list = re.findall(pattern, response.text)
