@@ -5,6 +5,7 @@
 # software: PyCharm
 
 import requests as s
+import json
 
 
 class Login(object):
@@ -58,7 +59,6 @@ class Login(object):
             'Content-Type': 'application/json',
             'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.97 Safari/537.36',
         }
-        import json
         request_payload_json = json.dumps(request_payload_dict)
         response = self.requests.post(url=url, data=request_payload_json, headers=header, cookies=self.cookies)
         if response.status_code == 200 and json.loads(response.text)["result"] is True:
@@ -105,46 +105,71 @@ class Login(object):
         :return:
         """
         return self.user_message_list[5]
-    
-    def get_courseSelectTurnAssoc(self):
-        """
-        获取courseSelectTurnAssoc
-        这里我记得是某个url里的字段，可自行测试
-        :return: 
-        """
-        return 666
 
-    def select_course(self, lessonAssoc):
+    def get_course_select_turn_assoc(self):
+        jump_url = 'http://jxglstu.hfut.edu.cn/eams5-student/for-std/course-select'
+        self.requests.get(url=jump_url)
+        post_url = 'http://jxglstu.hfut.edu.cn/eams5-student/ws/for-std/course-select/open-turns'
+        headers = {
+            'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
+            'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.97 Safari/537.36',
+        }
+        data = 'bizTypeId=2&studentId={}'.format(self.get_info_id)
+        res = self.requests.post(url=post_url, data=data, headers=headers)
+        json_data = json.loads(res.text)
+        for category in json_data:
+            id = category['id']
+            name = category['name']
+            print(str(id) + '------' + name)
+
+    def get_lesson_assoc(self, course_select_turn_assoc, lesson_code):
+        url = 'http://jxglstu.hfut.edu.cn/eams5-student/ws/for-std/course-select/addable-lessons'
+        data = 'turnId={}'.format(course_select_turn_assoc)
+        headers = {
+            'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
+        }
+        lesson_assoc = []
+        res = self.requests.post(url=url, data=data, headers=headers)
+        json_data = json.loads(res.text)
+        for lesson in json_data:
+            for code in lesson_code:
+                if code == lesson['code']:
+                    lesson_assoc.append(lesson['id'])
+                    print(lesson['id'], end='------')
+                    print(lesson['course']['nameZh'], end='------')
+                    print(lesson['code'], end='------')
+                    print([teacher['nameZh'] for teacher in lesson['teachers'] if teacher['nameZh']])
+
+        return lesson_assoc
+
+    def select_course(self, lesson_assoc, course_select_turn_assoc):
         url_add = self.baseUrl + "eams5-student/ws/for-std/course-select/add-request"
         url_add_r = self.baseUrl + "eams5-student/ws/for-std/course-select/add-drop-response"
         url_status = self.baseUrl + "eams5-student/ws/for-std/course-select/std-count"
-        courseSelectTurnAssoc = self.get_courseSelectTurnAssoc()
-        for lesson in lessonAssoc:
+        id = self.get_info_id
+        headers = {
+            'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
+            'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.97 Safari/537.36',
+        }
+        jump_url = self.baseUrl + 'eams5-student/for-std/course-select/{}/turn/{}/select'.format(self.get_info_id, course_select_turn_assoc)
+        self.requests.get(url=jump_url)
+        for lesson in lesson_assoc:
             while True:
-                data = {
-                    'studentAssoc': id,
-                    'lessonAssoc': lesson,
-                    'courseSelectTurnAssoc': courseSelectTurnAssoc,
-                    'scheduleGroupAssoc': '',
-                    'virtualCost': '0',
-                }
-                requestId = self.requests.post(url=url_add, data=data).text
-                data1 = {
-                    'studentId': id,
-                    'requestId': requestId,
-                }
-
-                self.requests.post(url=url_add_r, data=data1)
-                data2 = {
-                    'lessonIds[]': lesson
-                }
-
-                response = self.requests.post(url=url_status, data=data2)
-                print(response.text)
+                data = 'studentAssoc={}&lessonAssoc={}&courseSelectTurnAssoc={}&scheduleGroupAssoc=&virtualCost=0'.format(id, lesson, course_select_turn_assoc)
+                requestId = self.requests.post(url=url_add, data=data, headers=headers).text
+                data1 = 'studentId={}&requestId={}'.format(id, requestId)
+                'studentId=100838&requestId=336f8798-252b-11ea-ac4d-005056830f9b'
+                res = self.requests.post(url=url_add_r, data=data1, headers=headers)
+                data_json = json.loads(res.text)
+                if data_json['errorMessage']:
+                    print(data_json['errorMessage'])
+                data2 = 'lessonIds%5B%5D={}'.format(lesson)
+                response = self.requests.post(url=url_status, data=data2, headers=headers)
+                data_json = json.loads(response.text)
+                print(data_json)
+                # print('当前--' + str(lesson) + '--已选了' + str(data_json[lesson]) + '人...')
                 import time
-                time.sleep(1)
-            # 写这个的时候是大一，因为现在没在选课时段，我也不好调试代码，所以这是一个死循环，你可以根据实际返回的值写个break条件
-            # 零零碎碎的记忆，我是根据一个大四学长写的url写的，所以不百分百保证现在url有效，如果有问题可以联系我，qq 2456664655
+                time.sleep(5)
 
 
 def main():
@@ -153,10 +178,17 @@ def main():
     zhao = Login(username=username, password=password)
     print("欢迎" + zhao.get_real_username + "!")
 
-    t = input("请输入你的lessonAssoc：（如有多门课程请以空格分割输入例如：777 888）")
-    lessonAssoc = t.split(" ")
-    zhao.select_course(lessonAssoc)
-    zhao.select_course()
+    print('请输入你要选课的类型：(专业课，全校公选课，体育课)')
+    zhao.get_course_select_turn_assoc()
+    course_select_turn_assoc = input()
+
+    t = input("请输入你的教学班代码：（如有多门课程请以空格分割输入例如：0115014B--001 0115014B--002）")
+    lesson_code = t.split(" ")
+
+    lesson_assoc = zhao.get_lesson_assoc(course_select_turn_assoc, lesson_code)
+
+    zhao.select_course(lesson_assoc, course_select_turn_assoc)
+
     
     
 if __name__ == '__main__':
