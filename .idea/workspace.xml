@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="a2154018-02de-4784-add1-940a25115b35" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/select_courses.py" beforeDir="false" afterPath="$PROJECT_DIR$/select_courses.py" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1VMWkFuap9sOaAfBYij2i8hxG2X" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../mhfut" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+  </component>
+  <component name="RunManager">
+    <configuration name="select_courses" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="hfut-lesson" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/select_courses.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.select_courses" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="ServiceViewManager">
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <treeState>
+            <expand />
+            <select />
+          </treeState>
+        </serviceView>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="a2154018-02de-4784-add1-940a25115b35" name="Default Changelist" comment="" />
+      <created>1577063585986</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1577063585986</updated>
+      <workItem from="1577063587414" duration="4586000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="550" y="150" width="858" height="805" key="CommitChangelistDialog2" timestamp="1577068244984">
+      <screen x="48" y="28" width="1872" height="1052" />
+    </state>
+    <state x="550" y="150" width="858" height="805" key="CommitChangelistDialog2/48.28.1872.1052/48.28.1872.1052@48.28.1872.1052" timestamp="1577068244984" />
+    <state x="767" y="312" width="424" height="482" key="FileChooserDialogImpl" timestamp="1577064067182">
+      <screen x="48" y="28" width="1872" height="1052" />
+    </state>
+    <state x="767" y="312" width="424" height="482" key="FileChooserDialogImpl/48.28.1872.1052/48.28.1872.1052@48.28.1872.1052" timestamp="1577064067182" />
+    <state width="1824" height="299" key="GridCell.Tab.0.bottom" timestamp="1577068120750">
+      <screen x="48" y="28" width="1872" height="1052" />
+    </state>
+    <state width="1824" height="299" key="GridCell.Tab.0.bottom/48.28.1872.1052/48.28.1872.1052@48.28.1872.1052" timestamp="1577068120750" />
+    <state width="1824" height="299" key="GridCell.Tab.0.center" timestamp="1577068120750">
+      <screen x="48" y="28" width="1872" height="1052" />
+    </state>
+    <state width="1824" height="299" key="GridCell.Tab.0.center/48.28.1872.1052/48.28.1872.1052@48.28.1872.1052" timestamp="1577068120750" />
+    <state width="1824" height="299" key="GridCell.Tab.0.left" timestamp="1577068120749">
+      <screen x="48" y="28" width="1872" height="1052" />
+    </state>
+    <state width="1824" height="299" key="GridCell.Tab.0.left/48.28.1872.1052/48.28.1872.1052@48.28.1872.1052" timestamp="1577068120749" />
+    <state width="1824" height="299" key="GridCell.Tab.0.right" timestamp="1577068120750">
+      <screen x="48" y="28" width="1872" height="1052" />
+    </state>
+    <state width="1824" height="299" key="GridCell.Tab.0.right/48.28.1872.1052/48.28.1872.1052@48.28.1872.1052" timestamp="1577068120750" />
+    <state width="1824" height="389" key="GridCell.Tab.1.bottom" timestamp="1577067857648">
+      <screen x="48" y="28" width="1872" height="1052" />
+    </state>
+    <state width="1824" height="389" key="GridCell.Tab.1.bottom/48.28.1872.1052/48.28.1872.1052@48.28.1872.1052" timestamp="1577067857648" />
+    <state width="1824" height="389" key="GridCell.Tab.1.center" timestamp="1577067857648">
+      <screen x="48" y="28" width="1872" height="1052" />
+    </state>
+    <state width="1824" height="389" key="GridCell.Tab.1.center/48.28.1872.1052/48.28.1872.1052@48.28.1872.1052" timestamp="1577067857648" />
+    <state width="1824" height="389" key="GridCell.Tab.1.left" timestamp="1577067857648">
+      <screen x="48" y="28" width="1872" height="1052" />
+    </state>
+    <state width="1824" height="389" key="GridCell.Tab.1.left/48.28.1872.1052/48.28.1872.1052@48.28.1872.1052" timestamp="1577067857648" />
+    <state width="1824" height="389" key="GridCell.Tab.1.right" timestamp="1577067857648">
+      <screen x="48" y="28" width="1872" height="1052" />
+    </state>
+    <state width="1824" height="389" key="GridCell.Tab.1.right/48.28.1872.1052/48.28.1872.1052@48.28.1872.1052" timestamp="1577067857648" />
+    <state x="473" y="189" key="SettingsEditor" timestamp="1577063620427">
+      <screen x="48" y="28" width="1872" height="1052" />
+    </state>
+    <state x="473" y="189" key="SettingsEditor/48.28.1872.1052/48.28.1872.1052@48.28.1872.1052" timestamp="1577063620427" />
+    <state width="936" height="526" key="XDebugger.FullValuePopup" timestamp="1577066486828">
+      <screen x="48" y="28" width="1872" height="1052" />
+    </state>
+    <state width="936" height="526" key="XDebugger.FullValuePopup/48.28.1872.1052/48.28.1872.1052@48.28.1872.1052" timestamp="1577066486828" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/select_courses.py</url>
+          <line>161</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/select_courses.py</url>
+          <line>158</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/select_courses.py</url>
+          <line>166</line>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/hfut_lesson$select_courses.coverage" NAME="select_courses Coverage Results" MODIFIED="1577068120737" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+  </component>
+</project>
