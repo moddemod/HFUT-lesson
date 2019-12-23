@@ -142,7 +142,7 @@ class Login(object):
 
         return lesson_assoc
 
-    def select_course(self, lesson_assoc, course_select_turn_assoc):
+    def select_course(self, lesson_assoc, course_select_turn_assoc, sec):
         url_add = self.baseUrl + "eams5-student/ws/for-std/course-select/add-request"
         url_add_r = self.baseUrl + "eams5-student/ws/for-std/course-select/add-drop-response"
         url_status = self.baseUrl + "eams5-student/ws/for-std/course-select/std-count"
@@ -169,7 +169,7 @@ class Login(object):
                 print(data_json)
                 # print('当前--' + str(lesson) + '--已选了' + str(data_json[lesson]) + '人...')
                 import time
-                time.sleep(5)
+                time.sleep(sec)
 
 
 def main():
@@ -187,9 +187,9 @@ def main():
 
     lesson_assoc = zhao.get_lesson_assoc(course_select_turn_assoc, lesson_code)
 
-    zhao.select_course(lesson_assoc, course_select_turn_assoc)
+    sec = eval(input('请输入时间间隔:（0.5-~~）'))
+    zhao.select_course(lesson_assoc, course_select_turn_assoc, sec)
 
-    
     
 if __name__ == '__main__':
     main()
